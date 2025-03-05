@@ -1,0 +1,81 @@
+title: company-config-class
+x-mappedTo: class
+type: object
+description: Class is a customizable dimension that can be defined in a company and set on transactions to expand report functionality and insight.
+properties:
+  key:
+    description: System-assigned unique key for the class. Used to identify the class in URLs or JSON bodies for all operations on the class.
+    type: string
+    readOnly: true
+    x-mappedTo: RECORDNO
+    example: '42'
+  id:
+    description: Unique ID for the class.
+    type: string
+    x-mutable: false
+    x-mappedTo: CLASSID
+    example: 1-Goods
+  testEnum:
+    type: string
+    enum:
+      - active
+      - inactive
+      - NOTSET
+    example: `active`
+  href:
+    description: URL endpoint for this class.
+    type: string
+    readOnly: true
+    example: /objects/company-config/class/21
+  name:
+    description: Name of this class.
+    type: string
+    x-mappedTo: NAME
+    example: Goods
+  description:
+    description: Description of the class.
+    type: string
+    x-mappedTo: DESCRIPTION
+    example: Goods available for donations
+  status:
+    $ref: ../../common/models/dimension-status.s1.schema.yaml
+    example: active
+  locationKey:
+    type: string
+    description: System-assigned unique key for the entity. Used to identify the entity in URLs or JSON bodies for all operations involving the entity. This field is deprecated, please use entity object reference
+    deprecated: true
+    readOnly: true
+    x-mappedTo: MEGAENTITYKEY
+    example: '3345'
+  entity:
+    $ref: ../../common/references/entity-ref.s1.schema.yaml
+  parent:
+    type: object
+    description: Parent class, for class hierarchies.
+    title: parent
+    x-object: company-config/class
+    x-mappedTo: PARENT
+    properties:
+      id:
+        description: Parent class ID.
+        type: string
+        x-mappedTo: PARENTID
+        example: 23-Donations
+      key:
+        description: Parent class key.
+        type: string
+        x-mappedTo: PARENTKEY
+        example: '4'
+      href:
+        description: URL endpoint for the parent class.
+        type: string
+        readOnly: true
+        example: /objects/company-config/class/3
+      name:
+        description: Name of parent class.
+        type: string
+        readOnly: true
+        x-mappedTo: PARENTNAME
+        example: Donations
+  audit:
+    $ref: ../../common/models/audit.s1.schema.yaml
