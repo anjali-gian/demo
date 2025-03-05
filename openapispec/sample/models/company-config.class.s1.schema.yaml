@@ -19,7 +19,7 @@ properties:
     type: string
     enum:
       - active
-      - inactive
+      - INACTIVE
       - NOTSET
     example: `active`
   href:
